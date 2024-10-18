@@ -12,7 +12,21 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "base"
+  config.vm.box = "debian/bookworm64"
+
+  config.vm.provision "shell", inline: <<-SHELL
+    apt-get update
+    apt-get install -y bind9
+  SHELL
+
+
+  config.vm.define "venus" do |venus|#slave
+    venus.vm.network"private_network", ip: "192.168.57.102"
+  end
+
+  config.vm.define "tierra" do |venus|#master
+    tierra.vm.network"private_network", ip: "192.168.57.103"
+  end
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
