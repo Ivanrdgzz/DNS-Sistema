@@ -21,11 +21,11 @@ Vagrant.configure("2") do |config|
 
 
   config.vm.define "venus" do |venus|#slave
-    venus.vm.network"private_network", ip: "192.168.57.102"
+    venus.vm.network "private_network", ip: "192.168.57.102"
   end
 
-  config.vm.define "tierra" do |venus|#master
-    tierra.vm.network"private_network", ip: "192.168.57.103"
+  config.vm.define "tierra" do |tierra|#master
+    tierra.vm.network "private_network", ip: "192.168.57.103"
   end
 
   # Disable automatic box update checking. If you disable this, then
